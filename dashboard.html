@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="dashboard.html">
+                        <span class="icon"><ion-icon name="snow"></ion-icon></span>
+                        <span class="title">Pressco</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="customers.html" >
+                      <span class="icon"><ion-icon name="people"></ion-icon></span>
+                      <span class="title">Customers</span>
+                    </a>
+                  </li>
+                <li>
+                    <a href="technician.html">
+                        <span class="icon"><ion-icon name="construct-outline"></ion-icon></span>
+                        <span class="title">Technician</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="bookings.html">
+                        <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                        <span class="title">Bookings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
+                        <span class="title">About Us</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+                
+                <!-- Update your sign-out button in the navigation -->
+                <li>
+                    <a href="#" onclick="handleSignOut()">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+    <!---main--->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <!----search-- -->
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="Search here">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+                <!---image--->
+                <div class="user">
+                    <img src="user.jpg">
+                </div>
+            </div>
+
+            <!---cards-->
+                <div class="cardBox">
+                    <div class="card">
+                        <div>
+                            <div class="numbers">Cleaning</div>
+                            <div class="cardName">Daily Views</div>
+                        </div>
+                
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="numbers">Maintenance</div>
+                            <div class="cardName">Daily Views</div>
+                        </div>
+                        
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="numbers">Repair</div>
+                            <div class="cardName">Daily Views</div>
+                        </div>
+                        
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="numbers">Installation</div>
+                            <div class="cardName">Daily Views</div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+        <!----add charts-->
+        <div class="graphBox">
+            <div class="box">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="box" style="height: 400px;">
+                <canvas id="lineChart"></canvas>
+              </div>
+        </div>
+
+        
+
+
+  <script>
+    // Initialize the chart once the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+      const lineCtx = document.getElementById('lineChart').getContext('2d');
+  
+      new Chart(lineCtx, {
+        type: 'line',
+        data: {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+          datasets: [
+            {
+              label: 'Technicians',
+              data: [120, 150, 180, 220, 200, 170, 210],
+              borderColor: 'rgba(54, 162, 235, 1)',
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderWidth: 2,
+              tension: 0.4,
+            },
+            {
+              label: 'Customer',
+              data: [80, 100, 90, 150, 140, 160, 180],
+              borderColor: 'rgba(255, 99, 132, 1)',
+              backgroundColor: 'rgba(255, 99, 132, 0.2)',
+              borderWidth: 2,
+              tension: 0.4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+            },
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Months',
+              },
+            },
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Monthly User Reports',
+              },
+            },
+          },
+        },
+      });
+    });
+  </script>
+
+ 
+        <!---details list-->
+        <div class="details">
+            <div class="recentOrders">
+                <div class="cardHeader">
+                    <h2>Recent Updates</h2>
+                    <a href="#" class="btn">View All</a>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Technician</td>
+                            <td>ID</td>
+                            <td>Information</td>
+                            <td>Status</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Star Star Star</td>
+                            <td>0000</td>
+                            <td>N/A</td>
+                            <td><span class="status active">Active</span></td>
+                        </tr>
+                        
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>Star Star Star</td>
+                            <td>0000</td>
+                            <td>N/A</td>
+                            <td><span class="status active">Active</span></td>
+                        </tr>
+                        
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>Star Star Star</td>
+                            <td>0000</td>
+                            <td>N/A</td>
+                            <td><span class="status inactive">Inactive</span></td>
+                        </tr>
+                        
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>Star Star Star</td>
+                            <td>0000</td>
+                            <td>N/A</td>
+                            <td><span class="status active">Active</span></td>
+                        </tr>
+                        
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>Star Star Star</td>
+                            <td>0000</td>
+                            <td>N/A</td>
+                            <td><span class="status inactive">Inactive</span></td>
+                        </tr>
+                        
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>Star Star Star</td>
+                            <td>0000</td>
+                            <td>N/A</td>
+                            <td><span class="status inactive">Inactive</span></td>
+                        </tr>
+                        
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>Star Star Star</td>
+                            <td>0000</td>
+                            <td>N/A</td>
+                            <td><span class="status active">Active</span></td>
+                        </tr>
+                        
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>Star Star Star</td>
+                            <td>0000</td>
+                            <td>N/A</td>
+                            <td><span class="status active">Active</span></td>
+                        </tr>
+                        
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>Star Star Star</td>
+                            <td>0000</td>
+                            <td>N/A</td>
+                            <td><span class="status inactive">Inactive</span></td>
+                        </tr>
+                        
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>Star Star Star</td>
+                            <td>0000</td>
+                            <td>N/A</td>
+                            <td><span class="status inactive">Inactive</span></td>
+                        </tr>
+                        
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>Star Star Star</td>
+                            <td>0000</td>
+                            <td>N/A</td>
+                            <td><span class="status inactive">Inactive</span></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+
+            <!--New techni-->
+            <div class="recentTechnicians">
+                <div class="cardHeader">
+                    <h2>Recent Technician</h2>
+                </div>
+                <table>
+                    <tr>
+                        <td width="60px"><div class="imgBx"><img src="img1.jpg"></div></td>
+                        <td><h4>Fran shesh<br><span>Filipino</span></h4></td>
+                    </tr>
+                    <tr>
+                        <td width="60px"><div class="imgBx"><img src="img1.jpg"></div></td>
+                        <td><h4>Fran shesh<br><span>Filipino</span></h4></td>
+                    </tr>
+                    <tr>
+                        <td width="60px"><div class="imgBx"><img src="img1.jpg"></div></td>
+                        <td><h4>Fran shesh<br><span>Filipino</span></h4></td>
+                    </tr>
+                    <tr>
+                        <td width="60px"><div class="imgBx"><img src="img1.jpg"></div></td>
+                        <td><h4>Fran shesh<br><span>Filipino</span></h4></td>
+                    </tr>
+                    <tr>
+                        <td width="60px"><div class="imgBx"><img src="img1.jpg"></div></td>
+                        <td><h4>Fran shesh<br><span>Filipino</span></h4></td>
+                    </tr>
+                    <tr>
+                        <td width="60px"><div class="imgBx"><img src="img1.jpg"></div></td>
+                        <td><h4>Fran shesh<br><span>Filipino</span></h4></td>
+                    </tr>
+                    <tr>
+                        <td width="60px"><div class="imgBx"><img src="img1.jpg"></div></td>
+                        <td><h4>Fran shesh<br><span>Filipino</span></h4></td>
+                    </tr>
+                    <tr>
+                        <td width="60px"><div class="imgBx"><img src="img1.jpg"></div></td>
+                        <td><h4>Fran shesh<br><span>Filipino</span></h4></td>
+                    </tr>
+                </table>
+            </div>
+        </div>  
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="my_chart.js"></script>
+    
+
+    
+    <script>
+         // MenuToggle
+         let toggle = document.querySelector('.toggle');
+         let navigation = document.querySelector('.navigation');
+         let main = document.querySelector('.main');
+
+         toggle.onclick = function(){
+            navigation.classList.toggle('active')
+            main.classList.toggle('active')
+         }
+
+
+        //dagdag na hovered class pag gaselect kang list item   
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink(){
+            list.forEach((item) =>
+            item.classList.remove('hovered'));
+            this.classList.add('hovered');
+        }
+        list.forEach((item) =>
+        item.addEventListener('mouseover',activeLink));
+
+        // Add this to your existing script section, preferably at the beginning
+        if (!localStorage.getItem('isLoggedIn')) {
+            window.location.href = 'index.html';
+        }
+    
+
+        // Add this to your existing script section
+        function handleSignOut() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            window.location.href = 'index.html';
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pressco Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Navigation (Same as dashboard) -->
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="dashboard.html">
+                        <span class="icon"><ion-icon name="snow"></ion-icon></span>
+                        <span class="title">Pressco</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="customers.html">
+                        <span class="icon"><ion-icon name="people"></ion-icon></span>
+                        <span class="title">Customers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="technician.html">
+                        <span class="icon"><ion-icon name="construct-outline"></ion-icon></span>
+                        <span class="title">Technician</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="bookings.html">
+                        <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                        <span class="title">Bookings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
+                        <span class="title">About Us</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#" onclick="handleSignOut()">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main">
+            <h1>Technician List</h1>
+            <div class="table-card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Technician ID</th>
+                            <th>Name</th>
+                            <th>Active Status</th>
+                            <th>Edit</th>
+                            <th>Disable</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>tc100000</td>
+                            <td>Mike Johnson</td>
+                            <td>Active</td>
+                            <td><button>Edit</button></td>
+                            <td><button>Disable</button></td>
+                        </tr>
+                        <tr>
+                            <td>tc100001</td>
+                            <td>Emily Davis</td>
+                            <td>Inactive</td>
+                            <td><button>Edit</button></td>
+                            <td><button>Disable</button></td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+
+        toggle.onclick = function() {
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+
+        if (!localStorage.getItem('isLoggedIn')) {
+            window.location.href = 'index.html';
+        }
+
+        function handleSignOut() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            window.location.href = 'index.html';
+        }
+
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink() {
+            list.forEach((item) =>
+                item.classList.remove('hovered')
+            );
+            this.classList.add('hovered');
+        }
+        list.forEach((item) =>
+            item.addEventListener('mouseover', activeLink)
+        );
+    </script>
+</body>
+
+</html>

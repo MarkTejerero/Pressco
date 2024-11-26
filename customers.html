@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers - Pressco</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="dashboard.html">
+                        <span class="icon"><ion-icon name="snow"></ion-icon></span>
+                        <span class="title">Pressco</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="customers.html">
+                        <span class="icon"><ion-icon name="people"></ion-icon></span>
+                        <span class="title">Customers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="technician.html">
+                        <span class="icon"><ion-icon name="construct-outline"></ion-icon></span>
+                        <span class="title">Technician</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="bookings.html">
+                        <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                        <span class="title">Bookings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
+                        <span class="title">About Us</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#" onclick="handleSignOut()">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+<div class="main">
+    <h1>Customer List</h1>
+    <div class="table-card">
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>Name</th>
+                    <th>Service Type</th>
+                    <th>Contacts</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ct100000</td>
+                    <td>John Doe</td>
+                    <td>Cleaning</td>
+                    <td>1111-22-221</td>
+                    <td><button onclick="showProfileDetails('ct100000', 'John Doe', 'Cleaning', '1111-22-221')">details</button></td>
+                </tr>
+                <tr>
+                    <td>ct100001</td>
+                    <td>Jane Smith</td>
+                    <td>Repair</td>
+                    <td>6666-433-32</td>
+                    <td><button onclick="showProfileDetails('ct100001', 'Jane Smith', 'Repair', '6666-433-32')">details</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Profile Details Modal -->
+<div id="profileModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Profile Details</h2>
+        <h3>all history service and basic info</h3>
+        <p><strong>Customer ID:</strong> <span id="profileCustomerId"></span></p>
+        <p><strong>Name:</strong> <span id="profileName"></span></p>
+        <p><strong>Contacts:</strong> <span id="profileContacts"></span></p>
+        <p><strong>Service Type:</strong> <span id="profileService"></span></p>
+        <h3>History:</h3>
+        <td>Maintenance $ 400</td><br>
+        <td>Repair - $333</td><br>
+        <td>Cleaning $198</td><br>
+    </div>
+</div>
+
+    <!-- Scripts -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+<!-- Inline JavaScript -->
+<script>
+    function showProfileDetails(customerId, name, service, contacts) {
+        document.getElementById('profileCustomerId').innerText = customerId;
+        document.getElementById('profileName').innerText = name;
+        document.getElementById('profileService').innerText = service;
+        document.getElementById('profileContacts').innerText = contacts;
+        document.getElementById('profileModal').style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById('profileModal').style.display = "none";
+    }
+</script>
+    <script>
+        // MenuToggle
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+
+        toggle.onclick = function() {
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        };
+
+        // Authentication check
+        if (!localStorage.getItem('isLoggedIn')) {
+            window.location.href = 'index.html';
+        }
+
+        // Sign out function
+        function handleSignOut() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            window.location.href = 'index.html';
+        }
+
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink() {
+            list.forEach((item) =>
+                item.classList.remove('hovered')
+            );
+            this.classList.add('hovered');
+        }
+        list.forEach((item) =>
+            item.addEventListener('mouseover', activeLink)
+        );
+    </script>
+</body>
+
+</html>

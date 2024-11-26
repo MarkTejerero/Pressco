@@ -1,0 +1,52 @@
+/* General styles for the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* Table header styles */
+table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Table body styles */
+table th, table td {
+    padding: 12px 15px;
+    border: 1px solid #dddddd;
+}
+
+/* Table row styles */
+table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+/* Alternate row background color */
+table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+/* Hover effect for table rows */
+table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Button styles */
+button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #009879;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #007f63;
+}
